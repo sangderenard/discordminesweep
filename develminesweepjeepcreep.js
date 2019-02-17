@@ -127,8 +127,8 @@ function startdrag(i, j){
 
 function followdrag(i , j) {
 	if(drag){
-		j.style.left = parseInt(currentcoords[0])-parseInt(dragoffset[0]);
-		j.style.top = parseInt(currentcoords[1])-parseInt(dragoffset[1]);
+		j.style.left = (parseInt(currentcoords[0])-parseInt(dragoffset[0]))+'px';
+		j.style.top = (parseInt(currentcoords[1])-parseInt(dragoffset[1]))+'px';
 	}
 }
 
