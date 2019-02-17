@@ -339,7 +339,7 @@ fi
 if [ "$formatting" == "${formattinglist[2]}" ]; then
 #	posttotemplate $HAT_ID "<Content-type: text/html; charset=utf=8>"
 #	posttotemplate $HAT_ID ""
-	#posttotemplate $HAIR_ID "<!DOCTYPE html>\n<html lang='en'>\n"
+	posttotemplate $HAIR_ID "<!DOCTYPE html>\n<html lang='en'>\n"
 	writeheader
 	posttotemplate $BODY_ID '<body onload="onpageload()">'
 	writebodyheader
