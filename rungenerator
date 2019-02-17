@@ -1,4 +1,0 @@
-#/bin/bash
-sudo /var/cgi-bin/index.pl /var/cgi-bin/development/ siteincludelist /var/cgi-bin/development/render/ index htm
-sudo cp /var/cgi-bin/development/render/index.htm /var/www/html/development/index.htm
-sudo cp /var/www/html/development/index.htm /usr/local/nginx/html/development/index.htm
