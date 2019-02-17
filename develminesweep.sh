@@ -22,18 +22,8 @@ source ./gameboarddivblock.sh
 
 
 function writejavascript {
-	javascript='<script defer src="http://thisisafakeemail.org:8080/develminesweepjeepcreep.js">'
-	javascript=$javascript'
-
-
-
-
-
-
-
-	</script>'
+	javascript='<script defer src="http://thisisafakeemail.org:8080/develminesweepjeepcreep.js"></script>'
 	posttotemplate $BODY_ID "$javascript"
-#	echo -e "$javascript"
 }
 
 function writebodyheader {
@@ -119,48 +109,30 @@ function writebodyheader {
 
 			<div class="cell" style="
 				background-color: MistyRose; 
-				width: 100%;">
-	
-	'
+				width: 100%;">'
 
 	local sanitizedoutput=$(sanitizedivblock "$bodyheader") 
 	posttotemplate $BODY_ID "$sanitizedoutput"
-
-#	echo -e "$sanitizedoutput"
-
 }
 
 function writebodyfooter {
 	local tempgameboard=$(writegameboard $width $height 532 "")
-#	echo -e "$tempgameboard"
 	posttotemplate $BODY_ID "$tempgameboard"
-	bodyfooter='
-
-	
-
-	</div></div>
+	bodyfooter='</div></div>
 
 	</div>
 
 	</div>
-	<div id="gameboarddata" style="display: none;">'"$first $width $height"'</div>
-	'
+	<div id="gameboarddata" style="display: none;">'"$first $width $height"'</div>'
 
 	posttotemplate $BODY_ID "$bodyfooter"
-#	echo -e "$bodyfooter"
-
 }
 
 function writeheader {
-	head='<head><meta charset="UTF-8"><title>'"$(date +%Y-%m-%d-%H-%M-%S)"'</title>'
-	echo -e '<meta http-equiv="refresh" content="4;URL='"'"'http://thisisafakeemail.org:8080/development/'"'"'" />'
-	head=$head'<link href="http://thisisafakeemail.org:8080/develstyle.css" rel="stylesheet" type="text/css">'
-	head=$head'</head>'
-
+	head='<head><meta charset="UTF-8"><title>'"$(date +%Y-%m-%d-%H-%M-%S)"'</title><link href="http://thisisafakeemail.org:8080/develstyle.css" rel="stylesheet" type="text/css"></head>'
+	echo -e '<meta http-equiv="refresh" content="0;URL='"'"'http://thisisafakeemail.org:8080/development/'"'"'" />'
 
 	posttotemplate $HEAD_ID "$head"
-
-#	echo -e "$head"
 }
 
 function writeform {
@@ -238,7 +210,6 @@ function writeform {
 	</div>'
 	local sanitizedoutput=$(sanitizedivblock "$form")
 	posttotemplate $BODY_ID "$sanitizedoutput"
-#	echo $sanitizedouput
 }
 
 source ./cleandivblock.sh
@@ -326,12 +297,6 @@ else
 	if [ "${#uricharset[*]}" -lt "10" ]; then
 		uricharset=()
 	fi
-
-#	echo "Content-type: text/plain"
-#	echo ""
-#	echo "${uricharset[@]}"
-#	echo "${#uricharset[*]}"
-	
 
 	if [ "$uriopentag" != "$REQUEST_URI" ] && [ "$uriopentag" != "" ]; then
 		opentag=$(echo "$uriopentag" | sed 's/%/\\U000000/g')

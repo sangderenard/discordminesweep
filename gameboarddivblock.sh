@@ -192,7 +192,7 @@ function writegameboard {
 		
 		gameboard=$gameboard'
 			
-			</div>'
+			</div>'$datalinedivider
 
 		let i=$i+1
 	done
