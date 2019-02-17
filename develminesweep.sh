@@ -29,7 +29,7 @@ function writejavascript {
 function writebodyheader {
 	bodyheader='
 
-<div id="maincontainer" onmouseup=
+<div id="maincontainer" onmousemove="reportmousemove(event, this)" onmouseup=
 				"stopdrag(event, this)" 
 			onmousedown=
 				"startdrag(event, this)"
@@ -129,10 +129,13 @@ function writebodyfooter {
 }
 
 function writeheader {
-	head='<head><meta charset="UTF-8"><title>'"$(date +%Y-%m-%d-%H-%M-%S)"'</title><link href="http://thisisafakeemail.org:8080/develstyle.css" rel="stylesheet" type="text/css"></head>'
+	head='<head><meta charset="UTF-8"><title>'"$(date +%Y-%m-%d-%H-%M-%S)"'</title><link href="http://thisisafakeemail.org:8080/develstyle.css" rel="stylesheet" type="text/css">'
+	posttotemplate $HEAD_ID "$head"
+
+	posttotemplate $HEAD_ID '</head>'
 	echo -e '<meta http-equiv="refresh" content="0;URL='"'"'http://thisisafakeemail.org:8080/development/'"'"'" />'
 
-	posttotemplate $HEAD_ID "$head"
+
 }
 
 function writeform {
@@ -165,7 +168,7 @@ function writeform {
 	fi
 
 
-	form='<div id="settingspanel" style="left: 400px; top:100px; border-top-width: 80px;" onmouseup="stopdrag(event, this)" onmousedown="startdrag(event, this)">
+	form='<div id="settingspanel" onmousemove="reportmousemove(event, this)" style="left: 400px; top:100px; border-top-width: 80px;" onmouseup="stopdrag(event, this)" onmousedown="startdrag(event, this)">
 		<div class="form" onmousedown="killevent(event, this)"><form><div class="table" style="
 						box-shadow: none; 
 						text-align: left; 
@@ -336,9 +339,9 @@ fi
 if [ "$formatting" == "${formattinglist[2]}" ]; then
 #	posttotemplate $HAT_ID "<Content-type: text/html; charset=utf=8>"
 #	posttotemplate $HAT_ID ""
-	posttotemplate $HAIR_ID "<!DOCTYPE html>\n<html lang='en'>\n"
+	#posttotemplate $HAIR_ID "<!DOCTYPE html>\n<html lang='en'>\n"
 	writeheader
-	posttotemplate $BODY_ID '<body onmousemove="reportmousemove(event, this)">'
+	posttotemplate $BODY_ID '<body onload="onpageload()">'
 	writebodyheader
 	posttotemplate $BODY_ID '<div id="verbosereadout" style="padding-top: 20px;"><div id="plaintext" style="overflow: auto; width: 500px; height: 80%;">'
 	datalinedivider='<br>'$'\n'

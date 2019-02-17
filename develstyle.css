@@ -1,3 +1,4 @@
+
 body {
 	background-color: linen;
 	text-align: center;
@@ -246,6 +247,7 @@ div.row {
 }
 
 div.cell {
+	font-size: initial;
 	background-color: inherit;
 	padding: inherit;
 	margin: inherit;
