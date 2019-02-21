@@ -91,6 +91,7 @@ function writegameboard {
 	let gamecellinnersize=2*$gamecellpadding
 	let gamecellinnersize=$celldim-$gamecellinnersize
 
+	local rowpadding=$(echo "scale=3; ( ($boardwidthinpixels- ( $boardwidthintiles * ($celldimplus) ) ) / 2)  " | bc -l);
 	
 	gameboard=$gameboard'
 
@@ -104,26 +105,28 @@ function writegameboard {
 				padding: 0px; 
 				background-color: chocolate; 
 				overflow: auto; 
+				overflow-x: hidden;
 				width: '"$boardwidthinpixels"'px; 
 				border-width: 0px">
 
 			<div class="row" style="
 				font-size: xx-large; 
 				box-shadow: 0px 0px; 
+				height: 52px;
 				width: 100%;">
 				
 				<div id="gametitle" class="cell" style="
 					padding: 10px;">
 
-					'"$boardwidthintiles"'x'"$boardheightintiles"' Game<br></div>
+					'"$boardwidthintiles"'x'"$boardheightintiles"' Game</div>
 
 			</div><br>'
 	while [ "$i" -lt "$boardheightintiles" ]
 	do
 		gameboard=$gameboard'
 
-			<div class="row" style="
-				text-align: left;
+			<div id="gamecellrow_'"$i"'" class="row gamecellrow" style="
+				text-align: center;
 				height: '"$celldimplus"'px; 
 				margin: 0px; 
 				padding: 0px; 
@@ -182,8 +185,8 @@ function writegameboard {
 						height: '"$celldim"'px; 
 						display: inline-block" 
 
-						onclick="gameclick('"'$i'"', '"'$j'"')" 
-						oncontextmenu="flag('"$i"','"$j"');return false;"></div>
+						onclick="thispagegameboard.gameclick(event, this)" 
+						oncontextmenu="thispagegameboard.flag(event, this);return false;"></div>
 				</div>'
 
 			let j=$j+1
@@ -208,7 +211,7 @@ function writegameboard {
 						font-size: xx-large; 
 						padding: 10px;" 
 
-						onclick="resetgameboard()">RESET</div>
+						onclick="thispagegameboard.resetgameboard()">RESET</div>
 				</div>
 			</div>
 		</div>

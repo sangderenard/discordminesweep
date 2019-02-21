@@ -131,9 +131,9 @@ function writebodyfooter {
 function writeheader {
 	head='<head><meta charset="UTF-8"><title>'"$(date +%Y-%m-%d-%H-%M-%S)"'</title><link href="http://thisisafakeemail.org:8080/develstyle.css" rel="stylesheet" type="text/css">'
 	posttotemplate $HEAD_ID "$head"
-
+	posttotemplate $HEAD_ID '<meta http-equiv="refresh" content="200;URL='"'"'http://thisisafakeemail.org:8080/development/'"'"'" />'
 	posttotemplate $HEAD_ID '</head>'
-	echo -e '<meta http-equiv="refresh" content="0;URL='"'"'http://thisisafakeemail.org:8080/development/'"'"'" />'
+#	echo -e '<meta http-equiv="refresh" content="0;URL='"'"'http://thisisafakeemail.org:8080/development/'"'"'" />'
 
 
 }
